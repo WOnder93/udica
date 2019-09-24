@@ -8,8 +8,10 @@ services:
 before_install:
     - docker pull fedora:rawhide
     - docker pull fedora:latest
+    - sudo apt-get install -y python3-pyflakes build-essential
 
 script:
+    - make lint
     # test on Fedora Rawhide
     - docker run -v $PWD:/root/build/ fedora:rawhide /bin/sh -c "cd /root/build; python3 -m unittest -v tests/test_unit.py"
     # test on the latest stable release of Fedora
