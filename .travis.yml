@@ -8,7 +8,7 @@ services:
 before_install:
     - docker pull fedora:rawhide
     - docker pull fedora:latest
-    - sudo apt-get install -y python3-pyflakes build-essential
+    - sudo apt-get install -y pyflakes build-essential
 
 script:
     - make lint
