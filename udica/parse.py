@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import json, sys
+import json
 
 #: Constant for the podman engine
 ENGINE_PODMAN = "podman"
@@ -99,9 +99,8 @@ def get_mounts(data, inspect_format):
 def get_ports(data, inspect_format):
     if inspect_format in [ENGINE_PODMAN, ENGINE_DOCKER]:
         ports = []
-        print(data[0]["NetworkSettings"]["Ports"], file=sys.stderr)
-        print(type(data[0]["NetworkSettings"]["Ports"]), file=sys.stderr)
-        print(list(data[0]["NetworkSettings"]["Ports"].items()), file=sys.stderr)
+        if type(data[0]["NetworkSettings"]["Ports"]) != dict:
+            raise Exception("{}".format(data[0]["NetworkSettings"]["Ports"]))
         for key, value in data[0]["NetworkSettings"]["Ports"].items():
             container_port = str(key).split("/")
             host_port = value[0]["HostPort"]
