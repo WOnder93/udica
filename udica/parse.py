@@ -99,8 +99,7 @@ def get_mounts(data, inspect_format):
 def get_ports(data, inspect_format):
     if inspect_format in [ENGINE_PODMAN, ENGINE_DOCKER]:
         ports = []
-        if type(data[0]["NetworkSettings"]["Ports"]) != dict:
-            raise Exception("{}".format(data[0]["NetworkSettings"]["Ports"]))
+        raise Exception("{}".format(data[0]["NetworkSettings"]["Ports"]))
         for key, value in data[0]["NetworkSettings"]["Ports"].items():
             container_port = str(key).split("/")
             host_port = value[0]["HostPort"]
