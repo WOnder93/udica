@@ -101,6 +101,7 @@ def get_ports(data, inspect_format):
         ports = []
         print(data[0]["NetworkSettings"]["Ports"], file=sys.stderr)
         print(type(data[0]["NetworkSettings"]["Ports"]), file=sys.stderr)
+        print(list(data[0]["NetworkSettings"]["Ports"].items()), file=sys.stderr)
         for key, value in data[0]["NetworkSettings"]["Ports"].items():
             container_port = str(key).split("/")
             host_port = value[0]["HostPort"]
