@@ -17,12 +17,14 @@ import setuptools
 from setuptools.command.install import install
 import os
 
+from udica.version import __version__
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="udica",
-    version="0.2.2",
+    version=__version__,
     author="Lukas Vrabec",
     author_email="lvrabec@redhat.com",
     description="A tool for generating SELinux security policies for containers",
