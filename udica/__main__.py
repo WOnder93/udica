@@ -19,7 +19,8 @@ import argparse
 # import udica
 from udica.parse import parse_inspect, parse_avc_file
 from udica.parse import ENGINE_ALL, ENGINE_PODMAN, ENGINE_DOCKER
-from udica import parse, __version__
+from udica.version import version
+from udica import parse
 from udica.policy import create_policy, load_policy, generate_playbook
 
 
@@ -27,7 +28,7 @@ def get_args():
     parser = argparse.ArgumentParser(
         description="Script generates SELinux policy for running container."
     )
-    parser.add_argument("-v", "--version", action="version", version=__version__)
+    parser.add_argument("-v", "--version", action="version", version=version)
     parser.add_argument(
         type=str, help="Name for SELinux policy module", dest="ContainerName"
     )
